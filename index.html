@@ -17,8 +17,18 @@
  <p>This is another paragraph.</p>
 </div>
 
+<p id="initDataDisplay">Загружаем initData...</p>
+
 <script>
-    console.log("Telegram WebApp:", window.Telegram.WebApp.initData);
+	document.addEventListener("DOMContentLoaded", function () {
+	if (window.Telegram && window.Telegram.WebApp) {
+		Telegram.WebApp.expand(); // Разворачиваем WebView
+		const initData = Telegram.WebApp.initData || "initData отсутствует";
+		document.getElementById("initDataDisplay").innerText = `initData: ${initData}`;
+	} else {
+		document.getElementById("initDataDisplay").innerText = "Ошибка: Telegram WebApp API не загружен!";
+	}
+    });
 </script>
 
 </body>
