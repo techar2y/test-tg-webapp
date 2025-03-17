@@ -31,5 +31,28 @@
     });
 </script>
 
+<button onclick="sendGetRequest()">Отправить GET-запрос</button>
+
+<script>
+    function sendGetRequest() {
+		if (window.Telegram && window.Telegram.WebApp) {
+			const initData = Telegram.WebApp.initData || "initData отсутствует";
+			const encodedBase64InitData = btoa(initData);
+			fetch('https://telegrambot-nkic.onrender.com/api/map-point/get-points', {
+				method: 'GET',
+				headers: {
+					'Authorization': `${encodedBase64InitData}`,
+					'Content-Type': 'application/json'
+				}
+			})
+			.then(response => response.json())
+			.then(data => alert('Ответ сервера: ' + JSON.stringify(data)))
+			.catch(error => console.error('Ошибка:', error));
+		} else {
+			document.getElementById("initDataDisplay").innerText = "Ошибка: Telegram WebApp API не загружен!";
+		}
+    }
+</script>
+
 </body>
 </html>
