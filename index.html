@@ -18,6 +18,8 @@
 </div>
 
 <p id="initDataDisplay">Загружаем initData...</p>
+<p id="state">В ожидании...</p>
+<p id="initDataParam">initDataParam: []</p>
 
 <script>
 	document.addEventListener("DOMContentLoaded", function () {
@@ -38,6 +40,8 @@
 		if (window.Telegram && window.Telegram.WebApp) {
 			const initData = Telegram.WebApp.initData || "initData отсутствует";
 			const encodedBase64InitData = btoa(initData);
+			document.getElementById("state").innerText = "Отправляем запрос";
+			document.getElementById("initDataParam").innerText = `initDataParam: [${encodedBase64InitData}]`;
 			fetch('https://telegrambot-nkic.onrender.com/api/map-point/get-points', {
 				method: 'GET',
 				headers: {
