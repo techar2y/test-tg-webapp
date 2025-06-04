@@ -45,7 +45,7 @@
 			fetch('https://telegrambot-nkic.onrender.com/api/map-point/get-points', {
 				method: 'GET',
 				headers: {
-					'Authorization': `${encodedBase64InitData}`,
+					'Authorization': `Bearer ${encodedBase64InitData}`,
 					'Content-Type': 'application/json'
 				}
 			})
