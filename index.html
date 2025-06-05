@@ -37,24 +37,25 @@
 
 <script>
     function sendGetRequest() {
-		/*if (window.Telegram && window.Telegram.WebApp) {*/
-			/*const initData = Telegram.WebApp.initData || "initData отсутствует";
+		if (window.Telegram && window.Telegram.WebApp) {
+			const initData = Telegram.WebApp.initData || "initData отсутствует";
 			const encodedBase64InitData = btoa(initData);
-			document.getElementById("state").innerText = "Отправляем запрос";
-			document.getElementById("initDataParam").innerText = `initDataParam: [${encodedBase64InitData}]`;*/
+			const authorizationHeader = `Bearer ${encodedBase64InitData}`
+			document.getElementById("state").innerText = "Отправляем запрос...";
+			document.getElementById("initDataParam").innerText = `initDataParam: [${authorizationHeader}]`;
 			fetch('https://telegrambot-nkic.onrender.com/api/map-point/get-points', {
 				method: 'GET',
 				headers: {
-					'Authorization': 'Bearer cXVlcnlfaWQ9QUFIQ3VJaDhBQUFBQU1LNGlIemE0OE16JnVzZXI9JTdCJTIyaWQlMjIlM0EyMDg5MzM0OTc4JTJDJTIyZmlyc3RfbmFtZSUyMiUzQSUyMkFydHVyJTIyJTJDJTIybGFzdF9uYW1lJTIyJTNBJTIyJTIyJTJDJTIydXNlcm5hbWUlMjIlM0ElMjJBcnR1cl9pbzQlMjIlMkMlMjJsYW5ndWFnZV9jb2RlJTIyJTNBJTIycnUlMjIlMkMlMjJhbGxvd3Nfd3JpdGVfdG9fcG0lMjIlM0F0cnVlJTJDJTIycGhvdG9fdXJsJTIyJTNBJTIyaHR0cHMlM0ElNUMlMkYlNUMlMkZ0Lm1lJTVDJTJGaSU1QyUyRnVzZXJwaWMlNUMlMkYzMjAlNUMlMkZSSHphdWFwU3pVTTA1cVgzemNWa2NoSS1CQ2NhRnI4ay01VURKaHhlczVnLnN2ZyUyMiU3RCZhdXRoX2RhdGU9MTc0OTA2MTY0NCZzaWduYXR1cmU9d3RnMVB6YWYzLVY5ZmRtNEs0c0EzS1htajBzaXY0cWNSSklMT0lRQWNQWXU4Rlg3QlpDQzdyMFB4ZnhmOENpMk1paFlZM0pXdXZwbGU1Sng0OTFuQkEmaGFzaD03Y2QyNzczNjViMDIwMzE0OWFmYTdlNTI4MTgwMDdjZDFmOWZlZDM5OTFlYzJhZjNhMjFiNGMxMWZjMDkxMTU4',
+					'Authorization': `${authorizationHeader}`,
 					'Content-Type': 'application/json'
 				}
 			})
 			.then(response => response.json())
 			.then(data => alert('Ответ сервера: ' + JSON.stringify(data)))
 			.catch(error => console.error('Ошибка:', error));
-		/*} else {
+		} else {
 			document.getElementById("initDataDisplay").innerText = "Ошибка: Telegram WebApp API не загружен!";
-		}*/
+		}
     }
 </script>
 
